@@ -11,6 +11,7 @@
     $lightGrayishBlue: hsl(239, 57%, 85%);
     $lightGray: hsl(223, 19%, 93%);
     $veryLightGray: hsl(228, 33%, 97%);
+    $green: hsl(145, 63%, 49%);
 
 
     $breakpoints-up: ("small": "576px", "medium": "768px", "large": "992px", "xlarge": "1200px");
@@ -467,6 +468,26 @@
                     background: $softRed;
                 }
             }
+        }
+    }
+
+    .alert {
+        position: fixed;
+        top: 25px;
+        left: -100%;
+        color: #fff;
+        padding: 15px;
+        border-radius: 5px;
+        transition: all 0.5s ease-in-out;
+        z-index: 10;
+        &.alert-success {
+            background: $green;
+        }
+        &.alert-error {
+            background: $softRed;
+        }
+        &.alert-show {
+            left: 25px;
         }
     }
 

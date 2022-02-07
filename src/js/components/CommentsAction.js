@@ -6,6 +6,7 @@
     import removeCommentArea from '../utilis/removeCommentArea';
     import deleteSpecificComment from '../utilis/deleteSpecificComment';
     import editSpecificComment from '../utilis/editSpecificComment';
+    import showAlert from '../components/Alert';
 
     // Comments Action
     class CommentsAction {
@@ -32,7 +33,8 @@
                 const commentScore = 0;
                 //check if textarea value empty
                 if (textareaValue === '') {
-                    alert('Write something');
+                    // show alert for error
+                    showAlert('Comment input can\'t be empty!', 'error');
                 } else {
                     //if click element equal 'Send'
                     if (clickElementValue === 'Send') {
@@ -63,6 +65,8 @@
                         commentEl.innerHTML = new Comments().createCommentTemplate(commentObj, true, false);
                         //append created comment to DOM
                         this.commentsContainer.insertBefore(commentEl, commentAreaEl);
+                        //show alrert for successfully added comment
+                        showAlert('Comment successfully added!', 'success');
                         //empty textarea value
                         textareaEl.value = '';
                     } else if (clickElementValue === 'Reply') {
@@ -126,6 +130,8 @@
                         new Storage().addDataToStore(commentsObj);
                         //remove exsist comment area
                         removeCommentArea();
+                        //show alrert for successfully added comment
+                        showAlert('Comment successfully added!', 'success');
                     }
                 }
             }
@@ -153,6 +159,8 @@
                 deleteBtn.addEventListener('click', () => {
                     this.deleteComment(element);
                     deletePopup.parentNode.removeChild(deletePopup);
+                    //show alrert for successfully removed comment
+                    showAlert('Comment successfully removed!', 'success');
                 });
                 //Event: Close Delete Popup
                 closeBtn.addEventListener('click', () => {
@@ -257,8 +265,11 @@
                 //add to storage
                 editSpecificComment(commentsObj.comments, targetElId, editTextareaEl.value);
                 new Storage().addDataToStore(commentsObj);
+                // show alert for successfully edited comment
+                showAlert('Comment sucessfully edited!', 'success');
             } else {
-                alert('Something write!');
+                //show alrert for error
+                showAlert('Comment input can\'t be empty!', 'error');
             }
         } 
     }
